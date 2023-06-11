@@ -15,7 +15,7 @@ def form_gerente():
     while True:
         opcao = input("\nEscolha uma opção: ")
         if re.match(r'^\d{1}$', opcao):
-            return '0' + opcao
+            return '03.' + opcao
         else:
             print("digite uma opção valida.\n")
             

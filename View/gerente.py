@@ -1,6 +1,8 @@
      
-from View.users import escolher_vendedor
-from View.venda import consultar_total_vendedor
+from A3SD.View.redes import escolher_rede
+from A3SD.View.users import escolher_vendedor
+from A3SD.View.venda import consultar_total_vendedor
+from A3SD.View.venda import consultar_vendas_rede
 
 def total_vendedor():
     
@@ -8,18 +10,10 @@ def total_vendedor():
     id_vendedor = vendedor_selecionado['idusuario']
     
     return consultar_total_vendedor(id_vendedor)
+
+
+def total_vendas_rede():
+    rede_selecionada = escolher_rede()
+    id_rede = rede_selecionada['idrede']
     
-    
-def melhor_loja():
-    return 0
-
-
-def melhor_loja():
-    return "03", "loja A"
-
-
-def melhor_vendedor():
-    return "04", "Marcos"
-
-def total_rede():
-    return "05", "Mix"
+    return consultar_vendas_rede(id_rede)

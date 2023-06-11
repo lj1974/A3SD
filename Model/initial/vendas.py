@@ -3,6 +3,7 @@ import sqlite3
 
 from A3SD.users import obter_id_por_nome as obterUsuarios
 from A3SD.lojas import obter_id_por_nome as obterLojas
+from A3SD.Model.query.venda import inserir_venda
 
 
 conn = sqlite3.connect('../onsell.db')
@@ -101,20 +102,6 @@ vendas_ana = [
   
 ]
 
-
-# Função para inserir uma venda no banco de dados
-def inserir_venda(venda):
-    cursor.execute(
-        "INSERT INTO Vendas (idvenda, datavenda, usuario_idusuario, loja_idloja, valor) VALUES (?, ?, ?, ?, ?)",
-        (
-            venda['idvenda'],
-            venda['datavenda'],
-            venda['usuario_idusuario'],
-            venda['loja_idloja'],
-            venda.get('valor', None),
-        ),
-    )
-    conn.commit()
 
 # Vendas da Maria
 for venda in vendas_maria:

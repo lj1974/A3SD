@@ -1,31 +1,17 @@
-import sqlite3
 
-conn = sqlite3.connect('../onsell.db')
-cursor = conn.cursor()
+from Model.queries.consultar_rede import listar_ids_e_nomes
 
+def escolher_rede():
+   
+   while True:
+        print("\n\nLista de Redes:\n")
+        rede = listar_ids_e_nomes()
+        for i, rede in enumerate(rede, start=1):
+            print(f"{i}. {rede['nomerede']}")
 
-def listar_ids_e_nomes():
-
-    # Consultar os IDs e nomes das redes
-    cursor.execute("SELECT idrede, nomerede FROM Redes")
-    resultados = cursor.fetchall()
-
-    # Fechar a conexão
-    conn.close()
-
-    return resultados
-
-
-def obter_id_por_nome(nome_rede):
-
-    # Consultar o ID da rede pelo nome
-    cursor.execute("SELECT idrede FROM Redes WHERE nomerede = ?", (nome_rede,))
-    resultado = cursor.fetchone()
-
-    # Fechar a conexão
-    conn.close()
-
-    if resultado:
-        return resultado[0]
-    else:
-        return None
+    
+        num_rede = int(input("\nDigite o número da Rede: "))
+        if num_rede < 1 or num_rede > len(rede):
+            print("Número da rede inválido. Tente novamente.")
+        else:
+            return rede[num_rede - 1]

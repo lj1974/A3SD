@@ -1,38 +1,21 @@
-import sqlite3
+import re
 
-conn = sqlite3.connect('../onsell.db')
-cursor = conn.cursor()
-
-def listar_ids_e_nomes():
-
-    # Consultar os IDs e nomes dos usuários
-    cursor.execute("SELECT idusuario, nomeusuario FROM Usuarios")
-    resultados = cursor.fetchall()
-
-    # Fechar a conexão
-    conn.close()
-
-    return resultados
+from A3SD.Model.queries.consultar_usuario import listar_ids_e_nomes
 
 
-def obter_id_por_nome(nome_usuario):
+def coletar_dados_novo_usuario():
+    return 0
 
-    # Consultar o ID do usuário pelo nome
-    cursor.execute("SELECT idusuario FROM Usuarios WHERE nomeusuario = ?", (nome_usuario,))
-    resultado = cursor.fetchone()
+def leitura_cpf():
+    while True:
+        cpf = input("\nDigite o seu CPF (ex: 68719287600): ")
+        cpf = cpf.strip()  
 
-    # Fechar a conexão
-    conn.close()
-
-    if resultado:
-        return resultado[0] 
-    else:
-        return None 
-    
-    return resultado
-
-
-
+        if re.match(r'^\d{11}$', cpf):
+            return cpf
+        else:
+            print("CPF inválido. Digite apenas 11 dígitos numéricos.")
+            
 
 def escolher_vendedor():
    

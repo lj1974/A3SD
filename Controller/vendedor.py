@@ -28,7 +28,7 @@ def form_vendedor():
         confirmacao = input("\nDeseja confirmar as informações? (s/n): ")
         if confirmacao.lower() == "s":
             data = datetime.date.today()
-            return '01', id_loja, data, float(valor)
+            return '02.0', data, id_loja, float(valor)
         else:
             print("Resetando... Tente novamente.")
             time.sleep(0.5)
