@@ -26,7 +26,9 @@ def main():
     enviar_message(message)
     # Recebe a resposta do servidor
     response = client_socket.recv(1024)
-        
+    response = response.decode()
+    response = response.split(",")
+    print(response)
     while True:
         if response[0] == True:
             if response[2] ==  'VENDEDOR':
