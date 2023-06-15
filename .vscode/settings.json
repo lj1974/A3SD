@@ -1,5 +1,9 @@
 {
-    "python.analysis.extraPaths": [
-        "./sockets"
-    ]
+  "python.analysis.extraPaths": [
+    "./sockets",
+    "./View",
+    "./Controller",
+    ".Model",
+    "./Server"
+  ]
 }

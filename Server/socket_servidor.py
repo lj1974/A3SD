@@ -1,12 +1,12 @@
 import socket
 
-from A3SD.Model.queries.consultar_usuario import verificar_usuario
+from Model.queries.consultar_usuario import verificar_usuario
 # from A3SD.Model.queries.adicionar_usuario import cadastrar_usuario
-from A3SD.Model.queries.adicionar_venda import cadastrar_venda
-from A3SD.Model.queries.consultar_venda import consultar_total_vendedor
-from A3SD.Model.queries.consultar_loja import consultar_melhor_loja
-from A3SD.Model.queries.consultar_usuario import consultar_melhor_vendedor
-from A3SD.Model.queries.consultar_rede import consultar_vendas_rede
+from Model.queries.adicionar_venda import cadastrar_venda
+from Model.queries.consultar_venda import consultar_total_vendedor
+from Model.queries.consultar_loja import consultar_melhor_loja
+from Model.queries.consultar_usuario import consultar_melhor_vendedor
+from Model.queries.consultar_rede import consultar_vendas_rede
 
 host = '192.168.100.21'  
 port = 3333  
@@ -32,7 +32,7 @@ while True:
     if data_array[0] == '01.1':
         get = verificar_usuario(data_array[1])
         if get[0] == True:
-            response = get[1], get[2]
+            response = get[1], get[2], get[3]
         elif get[0] == False:
             response = get[1]
         else:

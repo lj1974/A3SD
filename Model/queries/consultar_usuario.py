@@ -4,10 +4,19 @@ conn = sqlite3.connect('../onsell.db')
 cursor = conn.cursor()
 
 def verificar_usuario(cpf):
-    # Aqui você pode implementar a lógica para verificar se o CPF corresponde a um cliente existente
-    # Pode ser uma consulta em um banco de dados ou algum outro meio de armazenamento dos dados dos clientes
-    # Neste exemplo, sempre retorna True para simular um cliente existente
-    return True
+    
+    cursor.execute("SELECT nome FROM usuarios WHERE cpf = ?", (cpf,))
+    resultado = cursor.fetchone()
+
+    conn.close()
+
+    if resultado is not None:
+        nome_usuario = resultado[1]
+        funcao = resultado[5]
+        return True, nome_usuario, funcao
+    else:
+        return False, None
+
 
 
 
