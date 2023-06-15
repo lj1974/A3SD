@@ -1,10 +1,9 @@
 import sqlite3
 import uuid
 
-from View.redes import obter_id_por_nome
+from Model.consultar_rede import obter_id_por_nome
 
 conn = sqlite3.connect('../onsell.db')
-
 cursor = conn.cursor()
 
 def obter_ids_redes():

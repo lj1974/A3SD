@@ -1,5 +1,5 @@
 
-from Model.queries.consultar_rede import listar_ids_e_nomes
+from Model.consultar_rede import listar_ids_e_nomes
 
 def escolher_rede():
    

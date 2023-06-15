@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from Controller.login import realizar_login
-from Model.queries.adicionar_usuario import cadastrar_usuario
+from A3SD.Model.adicionar_usuario import cadastrar_usuario
 from View.users import coletar_dados_novo_usuario
 from Controller.gerente import form_gerente
 from Controller.vendedor import form_vendedor
@@ -30,7 +30,7 @@ def main():
     response = response.split(",")
     print(response)
     while True:
-        if response[0] == True:
+        if response[0] == 'True':
             if response[2] ==  'VENDEDOR':
                 message2 = form_vendedor(response[1])
             elif response[2] == 'GERENTE':
@@ -43,17 +43,20 @@ def main():
             response2 = client_socket.recv(1024)
             dados_recebidos = response2.decode()
             data_array = dados_recebidos.split(",")
-        elif response[0] == False:
+        elif response[0] == 'False':
             print("ERROR: Usuario inexistente")
+            break
+        else:
+            print(response)
+            break
         
-            print(data_array)
+         
         
     client_socket.close()
 
 
 def enviar_message(message):
     message_str = ','.join([str(item) for item in message])
-    print(message_str)
     client_socket.send(message_str.encode())
     
     

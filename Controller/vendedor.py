@@ -7,9 +7,9 @@ from View.venda import digitar_valor
 from View.nome import nome_usuarios
 
 
-def form_vendedor():
+def form_vendedor(user):
    
-    nome_usuarios();
+    nome_usuarios(user);
     
     while True:
         # Obter ID e nome da loja selecionada

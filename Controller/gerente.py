@@ -3,8 +3,8 @@ import re
 from View.nome import nome_usuarios
 
 
-def form_gerente():
-    nome_usuarios()
+def form_gerente(user):
+    nome_usuarios(user)
     
     print("\n\nEscolha qual operação deseja executar:")
     print("1. Pesquisar total de vendas de um vendedor")

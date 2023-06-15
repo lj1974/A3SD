@@ -1,21 +1,20 @@
 import sqlite3
 
-conn = sqlite3.connect('../onsell.db')
+conn = sqlite3.connect('Model\onsell.db')
 cursor = conn.cursor()
 
 def verificar_usuario(cpf):
     
-    cursor.execute("SELECT nome FROM usuarios WHERE cpf = ?", (cpf,))
+    cursor.execute("SELECT * FROM Usuarios WHERE cpfusuario = ?", (cpf,))
     resultado = cursor.fetchone()
 
-    conn.close()
-
+    print(resultado)
     if resultado is not None:
         nome_usuario = resultado[1]
-        funcao = resultado[5]
+        funcao = resultado[4]
         return True, nome_usuario, funcao
     else:
-        return False, None
+        return False, 'None'
 
 
 
