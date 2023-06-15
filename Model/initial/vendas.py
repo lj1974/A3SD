@@ -1,9 +1,9 @@
 import uuid
 import sqlite3
 
-from A3SD.users import obter_id_por_nome as obterUsuarios
-from A3SD.lojas import obter_id_por_nome as obterLojas
-from A3SD.Model.query.venda import inserir_venda
+from users import obter_id_por_nome as obterUsuarios
+from lojas import obter_id_por_nome as obterLojas
+from Model.sql.venda import inserir_venda
 
 
 conn = sqlite3.connect('../onsell.db')

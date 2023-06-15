@@ -1,7 +1,7 @@
 import sqlite3
 import uuid
 
-from A3SD.View.redes import obter_id_por_nome
+from View.redes import obter_id_por_nome
 
 conn = sqlite3.connect('../onsell.db')
 

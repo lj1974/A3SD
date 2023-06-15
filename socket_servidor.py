@@ -1,4 +1,10 @@
+
 import socket
+import os
+from dotenv import load_dotenv
+
+# Carrega as variáveis do arquivo .env
+load_dotenv()
 
 from Model.queries.consultar_usuario import verificar_usuario
 # from A3SD.Model.queries.adicionar_usuario import cadastrar_usuario
@@ -8,7 +14,7 @@ from Model.queries.consultar_loja import consultar_melhor_loja
 from Model.queries.consultar_usuario import consultar_melhor_vendedor
 from Model.queries.consultar_rede import consultar_vendas_rede
 
-host = '192.168.100.21'  
+host = os.getenv('HOST')
 port = 3333  
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -29,6 +35,7 @@ while True:
     dados_recebidos = data.decode()
     data_array = dados_recebidos.split(",")
 
+    print(data_array)
     if data_array[0] == '01.1':
         get = verificar_usuario(data_array[1])
         if get[0] == True:

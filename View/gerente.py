@@ -1,8 +1,8 @@
      
-from A3SD.View.redes import escolher_rede
-from A3SD.View.users import escolher_vendedor
-from A3SD.View.venda import consultar_total_vendedor
-from A3SD.View.venda import consultar_vendas_rede
+from View.redes import escolher_rede
+from View.users import escolher_vendedor
+from View.venda import consultar_total_vendedor
+from View.venda import consultar_vendas_rede
 
 def total_vendedor():
     

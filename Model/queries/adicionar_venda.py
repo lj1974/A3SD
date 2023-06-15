@@ -2,7 +2,7 @@
 import sqlite3
 import uuid
 
-from A3SD.Model.sql.venda import inserir_venda
+from Model.sql.venda import inserir_venda
 
 conn = sqlite3.connect('../onsell.db')
 cursor = conn.cursor()    

@@ -2,9 +2,9 @@
 import datetime
 import time
 
-from A3SD.View.lojas import escolher_loja
-from A3SD.View.venda import digitar_valor
-from A3SD.View.nome import nome_usuarios
+from View.lojas import escolher_loja
+from View.venda import digitar_valor
+from View.nome import nome_usuarios
 
 
 def form_vendedor():
