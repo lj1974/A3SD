@@ -21,13 +21,13 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((host, port))
 
 def main():
+    server_socket.listen(1)
+    print('Aguardando conexões...')
+
+    client_socket, client_address = server_socket.accept()
+    print('Conexão estabelecida com:', client_address)
+    
     while True:
-        server_socket.listen(1)
-        print('Aguardando conexões...')
-
-        client_socket, client_address = server_socket.accept()
-        print('Conexão estabelecida com:', client_address)
-
 
         data = client_socket.recv(1024)
         if data == '':
@@ -37,6 +37,8 @@ def main():
         data_array = dados_recebidos.split(",")
 
 
+        print(data_array)
+        
         if data_array[0] == '01.1':
             get = verificar_usuario(data_array[1])
             if get[0] == True:
@@ -53,7 +55,7 @@ def main():
     #         response = False, 'ERROR: Usuario não foi cadastrado'
         
         elif data_array[0] == '02.0':
-            if cadastrar_venda(data_array[2], data_array[3], data_array[4], data_array[5]):
+            if cadastrar_venda(data_array[1], data_array[2], data_array[3], data_array[4]):
                 response = True, 'Venda cadastrada com sucesso'
             else: 
                 response = False, 'ERROR: Venda não cadastrada'
@@ -71,12 +73,12 @@ def main():
 
         message_str = ','.join([str(item) for item in response])
         client_socket.send(message_str.encode())
+        print("messagem enviada: ", message_str)
     
 
         
-    client_socket.close()
-    server_socket.close()
 
 
 main()
 
+server_socket.close()

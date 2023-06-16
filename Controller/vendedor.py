@@ -14,8 +14,8 @@ def form_vendedor(user):
     while True:
         # Obter ID e nome da loja selecionada
         loja_selecionada = escolher_loja()
-        id_loja = loja_selecionada['idloja']
-        nome_loja = loja_selecionada['nomeloja']
+        id_loja = loja_selecionada[0]
+        nome_loja = loja_selecionada[1]
 
         # Solicitar valor da venda
         valor = digitar_valor();

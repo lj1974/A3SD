@@ -20,44 +20,56 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((host, port))
 
 
-def main():
-   
-    message = realizar_login()
-    enviar_message(message)
-    # Recebe a resposta do servidor
-    response = client_socket.recv(1024)
-    response = response.decode()
-    response = response.split(",")
-    print(response)
-    while True:
-        if response[0] == 'True':
-            if response[2] ==  'VENDEDOR':
-                message2 = form_vendedor(response[1])
-            elif response[2] == 'GERENTE':
-                message2 = form_gerente(response[1])
-            else:
-                print("ERROR: unknown response")
-                break
-        
-            enviar_message(message2)
-            response2 = client_socket.recv(1024)
-            dados_recebidos = response2.decode()
-            data_array = dados_recebidos.split(",")
-        elif response[0] == 'False':
-            print("ERROR: Usuario inexistente")
-            break
-        else:
-            print(response)
-            break
-        
-         
-        
-    client_socket.close()
-
-
 def enviar_message(message):
     message_str = ','.join([str(item) for item in message])
     client_socket.send(message_str.encode())
+    print('messagem enviada', message)
+
+
+def response_servidor():
+    response = client_socket.recv(1024)
+    response = response.decode()
+    response = response.split(",")
     
+    return response
+
+def atividade_inicial(response):
+    
+    if response[0] == 'True':
+        if response[2] ==  'VENDEDOR':
+            form = form_vendedor(response[1]) 
+            form =  ','.join([str(item) for item in form])
+            form.append(response[1])
+            return form
+        elif response[2] == 'GERENTE':
+            form = form_gerente(response[1]) 
+            form =  ','.join([str(item) for item in form])
+            form.append(response[1])
+            return form
+        else:
+            print("ERROR: unknown response")
+            return ''
+    
+        
+    elif response[0] == 'False':
+        print("ERROR: Usuario inexistente")
+        return ''
+    else:
+        print(response)
+        return ''
+
+        
+def main():
+    message = realizar_login()
+    enviar_message(message)
+    resp = response_servidor()
+    data = atividade_inicial(resp)
+    enviar_message(data)
+    resp2 = response_servidor()
+    print(resp2)
+
+ 
     
 main() 
+
+client_socket.close()
