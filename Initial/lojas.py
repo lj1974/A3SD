@@ -1,10 +1,21 @@
 import sqlite3
 import uuid
 
-from Model.consultar_rede import obter_id_por_nome
 
-conn = sqlite3.connect('../onsell.db')
+
+conn = sqlite3.connect('../Model/onsell.db')
 cursor = conn.cursor()
+
+def obter_id_por_nome(nome_rede):
+
+    # Consultar o ID da rede pelo nome
+    cursor.execute("SELECT idrede FROM Redes WHERE nomerede = ?", (nome_rede,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        return resultado[0]
+    else:
+        return None
 
 def obter_ids_redes():
     nomes_redes = ['MAX ATACADO', 'ATAKADAO', 'LOJAS MARTINS']
@@ -25,7 +36,7 @@ lojas = [
 
 # Adicionar as lojas
 for loja in lojas:
-    cursor.execute("INSERT INTO Loja (idloja, nomeloja, cnpjloja, redeloja) VALUES (?, ?, ?, ?)", (loja['idloja'], loja['nomeloja'], loja['cnpjloja'], loja['redeloja']))
+    cursor.execute("INSERT INTO Lojas (idloja, nomeloja, cnpjloja, redeloja) VALUES (?, ?, ?, ?)", (loja['idloja'], loja['nomeloja'], loja['cnpjloja'], loja['redeloja']))
 
 
 # Salvar as alterações no banco de dados

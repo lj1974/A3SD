@@ -2,7 +2,7 @@ import sqlite3
 import uuid
 
 # Conectar ao banco de dados SQLite
-conn = sqlite3.connect('../../onsell.db')
+conn = sqlite3.connect('../Model/onsell.db')
 cursor = conn.cursor()
 
 # Adicionar 3 redes diferentes

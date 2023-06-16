@@ -1,6 +1,6 @@
 import re
 
-from Model.queries.consultar_usuario import listar_ids_e_nomes
+from Model.consultar_usuario import listar_ids_e_nomes
 
 
 def coletar_dados_novo_usuario():

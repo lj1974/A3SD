@@ -17,6 +17,18 @@ def consultar_melhor_loja():
 
     vendas = cursor.fetchall()
 
-    conn.close()
-
     return vendas[0]
+
+
+
+
+def obter_ids_por_nome(nome_loja):
+
+    # Consultar o ID do usuário pelo nome
+    cursor.execute("SELECT idloja FROM Lojas WHERE nomeloja = ?", (nome_loja,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        return resultado[0] 
+    else:
+        return None 

@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from Controller.login import realizar_login
-from A3SD.Model.adicionar_usuario import cadastrar_usuario
+from Model.adicionar_usuario import cadastrar_usuario
 from View.users import coletar_dados_novo_usuario
 from Controller.gerente import form_gerente
 from Controller.vendedor import form_vendedor

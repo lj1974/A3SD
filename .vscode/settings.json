@@ -3,8 +3,7 @@
     "./View",
     "./Controller",
     "./Model",
-    "./Initial",
-    "./SQL"
+    "./Initial"
   ],
   "sqltools.connections": [
     {

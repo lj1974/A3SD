@@ -5,12 +5,12 @@ cursor = conn.cursor()
 
 def inserir_venda(venda):
     cursor.execute(
-        "INSERT INTO Vendas (idvenda, datavenda, usuario_idusuario, loja_idloja, valor) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO Vendas (idvenda, datavenda, usuario, loja, valor) VALUES (?, ?, ?, ?, ?)",
         (
             venda['idvenda'],
             venda['datavenda'],
-            venda['usuario_idusuario'],
-            venda['loja_idloja'],
+            venda['usuario'],
+            venda['loja'],
             venda.get('valor', None),
         ),
     )
