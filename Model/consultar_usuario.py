@@ -10,9 +10,10 @@ def verificar_usuario(cpf):
 
     print(resultado)
     if resultado is not None:
+        id_usuario = resultado[0]
         nome_usuario = resultado[1]
         funcao = resultado[4]
-        return True, nome_usuario, funcao
+        return True, id_usuario, nome_usuario, funcao
     else:
         return False, 'None'
 
@@ -59,6 +60,5 @@ def consultar_melhor_vendedor():
 
     vendas = cursor.fetchall()
 
-    conn.close()
 
     return vendas[0]

@@ -15,8 +15,6 @@ def consultar_total_vendedor(id_usuario):
         vendas_usuario.append(venda)
         total_valor += venda[5]
 
-    conn.close()
-
     return vendas_usuario, total_valor
 
 

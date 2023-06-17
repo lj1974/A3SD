@@ -11,11 +11,13 @@ def form_gerente(user):
     print("2. Exibir melhor loja")
     print("3. Exibir melhor vendedor")
     print("4. Filtrar total de vendas de uma rede\n")
-    
+     
     while True:
         opcao = input("\nEscolha uma opção: ")
         if re.match(r'^\d{1}$', opcao):
-            return '03.' + opcao
+            valor = '03.' + str(opcao)
+            print(valor)
+            return valor
         else:
             print("digite uma opção valida.\n")
             

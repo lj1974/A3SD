@@ -23,27 +23,24 @@ client_socket.connect((host, port))
 def enviar_message(message):
     message_str = ','.join([str(item) for item in message])
     client_socket.send(message_str.encode())
-    print('messagem enviada', message)
+    print('messagem enviada', message_str)
 
 
 def response_servidor():
     response = client_socket.recv(1024)
     response = response.decode()
     response = response.split(",")
-    
     return response
 
 def atividade_inicial(response):
     
     if response[0] == 'True':
-        if response[2] ==  'VENDEDOR':
-            form = form_vendedor(response[1]) 
-            form =  ','.join([str(item) for item in form])
+        if response[3] ==  'VENDEDOR':
+            form = list(form_vendedor(response[2])) 
             form.append(response[1])
             return form
-        elif response[2] == 'GERENTE':
-            form = form_gerente(response[1]) 
-            form =  ','.join([str(item) for item in form])
+        elif response[3] == 'GERENTE':
+            form = list(form_gerente(response[2])) 
             form.append(response[1])
             return form
         else:
@@ -63,13 +60,18 @@ def main():
     message = realizar_login()
     enviar_message(message)
     resp = response_servidor()
-    data = atividade_inicial(resp)
-    enviar_message(data)
-    resp2 = response_servidor()
-    print(resp2)
-
- 
     
-main() 
+    while True:
+        print(1)
+        data = atividade_inicial(resp)
+        enviar_message(data)
+        resp2 = response_servidor()
+        print(resp2)
+        confirmacao = input('\nSair? (s/n)')
+        if confirmacao.lower() == "s":
+            break
+        
+
+main()
 
 client_socket.close()

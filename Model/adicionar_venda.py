@@ -2,26 +2,38 @@
 import sqlite3
 import uuid
 
-from Model.sql.venda import inserir_venda
-
-conn = sqlite3.connect('../onsell.db')
+conn = sqlite3.connect('Model/onsell.db')
 cursor = conn.cursor()    
 
-def cadastrar_venda(data, loja, valor, usuario):
-    vendas = [
-    {
-        'idvenda': str(uuid.uuid4()),
-        'datavenda': data,
-        'usuario_idusuario': usuario,
-        'loja_idloja': loja, 
-        'valor': valor
-    }]
+def cadastrar_venda(data):
+
+    vendas = {
+            'idvenda': str(uuid.uuid4()),
+            'datavenda': data[1],
+            'usuario': data[4],
+            'loja': data[2],
+            'valor': data[3],
+    }
     
-    inserir_venda(vendas)
-    # Fechar a conexão
-    conn.close()
+    
+    inserir_venda(vendas) 
     
     return True
+
+
+def inserir_venda(venda):
+    cursor.execute(
+        "INSERT INTO Vendas (idvenda, datavenda, usuario, loja, valor) VALUES (?, ?, ?, ?, ?)",
+            (
+            venda['idvenda'],
+            venda['datavenda'],
+            venda['usuario'],
+            venda['loja'],
+            venda.get('valor', None),
+        ),
+
+    )
+    conn.commit()
 
     
     
