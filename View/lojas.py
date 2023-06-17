@@ -17,7 +17,7 @@ def listar_ids_e_nomes():
 def obter_id_por_nome(nome_loja):
 
     # Consultar o ID do usuário pelo nome
-    cursor.execute("SELECT idloja FROM Lojas WHERE nomeuloja = ?", (nome_loja,))
+    cursor.execute("SELECT idloja FROM Lojas WHERE nomeloja = ?", (nome_loja,))
     resultado = cursor.fetchone()
 
     if resultado:

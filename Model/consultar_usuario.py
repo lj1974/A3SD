@@ -27,19 +27,19 @@ def listar_ids_e_nomes():
     cursor.execute("SELECT idusuario, nomeusuario FROM Usuarios")
     resultados = cursor.fetchall()
 
-    # Fechar a conexão
-    conn.close()
-
     return resultados
 
+def listar_ids_e_nomes_vendedores():
+    cursor.execute("SELECT idusuario, nomeusuario FROM Usuarios where cargousuario = 'VENDEDOR'")
+    resultados = cursor.fetchall()
+
+    return resultados
+    
 def obter_id_por_nome(nome_usuario):
 
     # Consultar o ID do usuário pelo nome
     cursor.execute("SELECT idusuario FROM Usuarios WHERE nomeusuario = ?", (nome_usuario,))
     resultado = cursor.fetchone()
-
-    # Fechar a conexão
-    conn.close()
 
     if resultado:
         return resultado[0] 
@@ -51,11 +51,11 @@ def consultar_melhor_vendedor():
     vendas = []
 
     cursor.execute("""
-        SELECT Vendas.idvenda, Usuario.nomeusuario, Vendas.valor
-        FROM Vendas
-        INNER JOIN Lojas ON Vendas.usuario = Usuario.idusuario
-        GROUP BY Vendas.usuario
-        ORDER BY Vendas.valor DESC
+    SELECT Vendas.usuario, Usuarios.nomeusuario, SUM(Vendas.valor) AS total
+    FROM Vendas
+    INNER JOIN Usuarios ON Vendas.usuario = Usuarios.idusuario
+    GROUP BY Vendas.usuario, Usuarios.nomeusuario
+    ORDER BY total DESC;
     """)
 
     vendas = cursor.fetchall()

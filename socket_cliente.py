@@ -21,9 +21,14 @@ client_socket.connect((host, port))
 
 
 def enviar_message(message):
-    message_str = ','.join([str(item) for item in message])
+    if len(message) == 4 and not message[0] == '03.4':
+        message_str = message
+    else:
+        message_str = ','.join([str(item) for item in message])
+        
     client_socket.send(message_str.encode())
-    print('messagem enviada', message_str)
+    print('mensagem enviada', message_str)
+
 
 
 def response_servidor():
@@ -40,8 +45,7 @@ def atividade_inicial(response):
             form.append(response[1])
             return form
         elif response[3] == 'GERENTE':
-            form = list(form_gerente(response[2])) 
-            form.append(response[1])
+            form = form_gerente(response[2])
             return form
         else:
             print("ERROR: unknown response")
@@ -62,11 +66,10 @@ def main():
     resp = response_servidor()
     
     while True:
-        print(1)
         data = atividade_inicial(resp)
         enviar_message(data)
         resp2 = response_servidor()
-        print(resp2)
+        print('\n\n', resp2)
         confirmacao = input('\nSair? (s/n)')
         if confirmacao.lower() == "s":
             break

@@ -1,25 +1,25 @@
 
 import sqlite3
 
-conn = sqlite3.connect('../onsell.db')
+conn = sqlite3.connect('Model/onsell.db')
 cursor = conn.cursor()
 
 def consultar_vendas_rede(rede, data_inicial, data_final):
 
     cursor.execute("""
-    SELECT Vendas.idvendas, Vendas.datavenda, 
-    Vendas.loja, Vendas.valor, Lojas.redeloja, Redes.nomerede
+    SELECT sum(Vendas.valor)
     FROM Vendas
     JOIN Lojas ON Vendas.loja = Lojas.idloja
     JOIN Redes ON Lojas.redeloja = Redes.idrede
-    WHERE Vendas.datavenda BETWEEN ? AND ? AND Redes.idrede = ?
-    GROUP BY Lojas.redeloja
+    WHERE Vendas.datavenda BETWEEN ? AND ? AND Redes.nomerede = ?
 """, (data_inicial, data_final, rede))
 
     resultados = cursor.fetchall()
-    
-    return resultados['nomerede'], resultados['valor']
 
+    return resultados
+
+
+   
 
 def listar_ids_e_nomes():
 

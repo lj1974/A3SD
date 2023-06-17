@@ -61,7 +61,7 @@ def main():
                         response = False, 'ERROR: Venda não cadastrada'
             
                 elif data_array[0] == '03.1':
-                    response = consultar_total_vendedor(data_array[2])
+                    response = consultar_total_vendedor(data_array[1])
                 elif data_array[0] == '03.2':
                     response = consultar_melhor_loja()
                 elif data_array[0] == '03.3':

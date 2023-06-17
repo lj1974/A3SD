@@ -1,6 +1,6 @@
 import re
 
-from Model.consultar_usuario import listar_ids_e_nomes
+from Model.consultar_usuario import listar_ids_e_nomes_vendedores
 
 
 def coletar_dados_novo_usuario():
@@ -20,16 +20,17 @@ def leitura_cpf():
 def escolher_vendedor():
    
    while True:
-        print("\n\nLista de Vendedores:\n")
-        vendedor = listar_ids_e_nomes()
-        for i, vendedor in enumerate(vendedor, start=1):
-            print(f"{i}. {vendedor['nomeloja']}")
+        while True:
+            print("\n\nLista de Vendedores:\n")
+            vendedores = listar_ids_e_nomes_vendedores()
+            for i, vendedor in enumerate(vendedores, start=1):
+                print(f"{i}. {vendedor[1]}")
 
-    
-        num_vendedor = int(input("\nDigite o número do Vendedor: "))
-        if num_vendedor < 1 or num_vendedor > len(vendedor):
-            print("Número do vendedor inválido. Tente novamente.")
-        else:
-            return vendedor[num_vendedor - 1]
+            num_vendedor = int(input("\nDigite o número do Vendedor: "))
+            if num_vendedor < 1 or num_vendedor > len(vendedores):
+                print("Número do vendedor inválido. Tente novamente.")
+            else:
+                escolha_vendedor = vendedores[num_vendedor - 1]
+                return escolha_vendedor
         
     

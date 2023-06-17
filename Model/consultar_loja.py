@@ -1,22 +1,21 @@
 
 import sqlite3
 
-conn = sqlite3.connect('../onsell.db')
+conn = sqlite3.connect('Model/onsell.db')
 cursor = conn.cursor()
 
 def consultar_melhor_loja():
     vendas = []
 
     cursor.execute("""
-        SELECT Vendas.idvenda, Lojas.nomeloja, Vendas.valor
+        SELECT Vendas.idvenda, Lojas.nomeloja, SUM(Vendas.valor)
         FROM Vendas
         INNER JOIN Lojas ON Vendas.loja = Lojas.idloja
-        GROUP BY Vendas.loja
+        group by Lojas.nomeloja
         ORDER BY Vendas.valor DESC
     """)
 
     vendas = cursor.fetchall()
-
     return vendas[0]
 
 
