@@ -60,12 +60,9 @@ def verificar_data(data_str):
 
 
 def mudar_data_formato(data_str):
-    dia = data_str[:2]
-    mes = data_str[2:4]
-    ano = data_str[4:]
-    
-    dia = dia.zfill(2)
-    mes = mes.zfill(2)
+    dia = str(data_str[:2]).zfill(2)
+    mes = str(data_str[2:4]).zfill(2)
+    ano = str(data_str[4:])
     
     data = '-'.join([str(ano), str(mes), str(dia)])
 

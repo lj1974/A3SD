@@ -23,6 +23,9 @@ client_socket.connect((host, port))
 def enviar_message(message):
     if len(message) == 4 and not message[0] == '03.4':
         message_str = message
+    elif message[0] == '03.4' :
+        print(message)
+        message_str = ','.join([str(item) for item in message])
     else:
         message_str = ','.join([str(item) for item in message])
         

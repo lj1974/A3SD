@@ -16,7 +16,7 @@ def consultar_vendas_rede(rede, data_inicial, data_final):
 
     resultados = cursor.fetchall()
 
-    return resultados
+    return resultados[0]
 
 
    

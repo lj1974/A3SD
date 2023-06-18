@@ -24,7 +24,7 @@ def form_gerente(user):
             if opcao == '4':
                 nome_rede = escolher_rede()
                 rede = escolher_data_para_rede()
-                return valor, nome_rede, rede[0], rede[1]
+                return valor, nome_rede[1], rede[0], rede[1]
             
             return valor
         else:
