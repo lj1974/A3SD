@@ -8,11 +8,10 @@ def consultar_melhor_loja():
     vendas = []
 
     cursor.execute("""
-        SELECT Vendas.idvenda, Lojas.nomeloja, SUM(Vendas.valor)
-        FROM Vendas
-        INNER JOIN Lojas ON Vendas.loja = Lojas.idloja
-        group by Lojas.nomeloja
-        ORDER BY Vendas.valor DESC
+        SELECT Vendas.idvenda, Lojas.nomeloja, SUM(valor) FROM Vendas
+        JOIN Lojas ON Lojas.idloja = Vendas.loja
+        GROUP BY Lojas.idloja
+        ORDER BY SUM(valor) DESC
     """)
 
     vendas = cursor.fetchall()
