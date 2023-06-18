@@ -6,6 +6,8 @@ def executar_arquivo(nome_arquivo):
     except FileNotFoundError:
         print("Arquivo não encontrado: " + nome_arquivo)
 
+
+executar_arquivo("onsell_schema.py")
 executar_arquivo("usuarios.py")
 executar_arquivo("redes.py")
 executar_arquivo("lojas.py")
