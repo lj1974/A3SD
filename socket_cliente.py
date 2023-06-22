@@ -25,10 +25,10 @@ id = 0
 def main():
     
     while True:
-        print(connections)
         try:
             id = response_servidor()
             modulo_cliente()
+            break
     
         except ConnectionAbortedError or ConnectionError or ConnectionResetError as e:
             print('servidor offline. Aguarde um novo servidor assumir')
@@ -64,7 +64,6 @@ def response_servidor():
         response = client_socket.recv(1024)
     except (ConnectionAbortedError, ConnectionError, ConnectionResetError):
         print('Servidor offline. Aguarde um novo servidor assumir.')
-        start_server(id)
         
     response = response.decode()
     response = response.split(",")
@@ -84,7 +83,6 @@ def enviar_message(message):
         client_socket.send(message_str.encode())
     except (ConnectionAbortedError, ConnectionError, ConnectionResetError):
         print('Servidor offline. Aguarde um novo servidor assumir.')
-        start_server(id)
 
         
     print('mensagem enviada', message_str)
@@ -125,12 +123,12 @@ def modulo_cliente():
             if resp3[0] == 'True':
                 resp[0] = resp3[0]
                 resp[1] = (obter_id_por_nome(cadastro[1]))
-                resp.append = cadastro[1]
+                resp.append(cadastro[1])
                 resp.append(cadastro[4])
                 print(resp)
-            else:
-                print("ERROR: Encerrando por falha, tente novamente.")
-                break
+        else:
+            print("ERROR: Encerrando por falha, tente novamente.")
+            break
                
 
 
@@ -157,7 +155,7 @@ def atividade_inicial(response):
         return ''
 
 
-    
+
 main()
 client_socket.close()
 

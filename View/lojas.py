@@ -36,8 +36,12 @@ def escolher_loja():
             print(f"{i}. {loja[1]}")
 
     
-        num_loja = int(input("\nDigite o número da loja: "))
-        if num_loja < 1 or num_loja > len(lojas):
-            print("Número de loja inválido. Tente novamente.")
+        num_loja = input("\nDigite o número da loja: ")
+        if num_loja.isdigit():
+            num_loja = int(num_loja)
+            if num_loja < 1 or num_loja > len(lojas):
+                print("Número de loja inválido. Tente novamente.")
+            else:
+                return lojas[num_loja - 1]
         else:
-            return lojas[num_loja - 1]
+            print("Digite um numero.")
