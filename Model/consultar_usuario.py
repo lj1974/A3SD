@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect('Model\onsell.db')
 cursor = conn.cursor()
 
-def verificar_usuario(cpf):
+def verificar_usuario(cursor, cpf):
     
     cursor.execute("SELECT * FROM Usuarios WHERE cpfusuario = ?", (cpf,))
     resultado = cursor.fetchone()
@@ -15,7 +15,7 @@ def verificar_usuario(cpf):
         funcao = resultado[4]
         return True, id_usuario, nome_usuario, funcao
     else:
-        return False, 'None'
+        return False, 'Nenhum usuario encontrado'
 
 
 
@@ -47,7 +47,7 @@ def obter_id_por_nome(nome_usuario):
         return None 
 
 
-def consultar_melhor_vendedor():
+def consultar_melhor_vendedor(cursor):
     vendas = []
 
     cursor.execute("""

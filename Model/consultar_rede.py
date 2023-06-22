@@ -4,7 +4,7 @@ import sqlite3
 conn = sqlite3.connect('Model/onsell.db')
 cursor = conn.cursor()
 
-def consultar_vendas_rede(rede, data_inicial, data_final):
+def consultar_vendas_rede(cursor, rede, data_inicial, data_final):
 
     cursor.execute("""
     SELECT sum(Vendas.valor)

@@ -1,87 +1,83 @@
-import threading
-import time
 
-class Server:
-    def __init__(self):
-        self.leader = None
-        self.is_running = True
-        self.clients = []
+import socket
+import os
+from dotenv import load_dotenv
 
-    def run(self):
-        while self.is_running:
-            # Realizar as operações do servidor
+# Carrega as variáveis do arquivo .env
+load_dotenv()
 
-            # Verificar se o servidor está respondendo
-            if not self.is_responding():
-                print("Servidor não está respondendo. Iniciando eleição...")
-                self.start_election()
+from Controller.login import realizar_login
+from Controller.gerente import form_gerente
+from Controller.vendedor import form_vendedor
 
-            time.sleep(1)  # Aguardar um intervalo antes de verificar novamente
 
-    def is_responding(self):
-        # Lógica para verificar se o servidor está respondendo
-        # Retorna True se o servidor está respondendo e False caso contrário
-        pass
+host = os.getenv('HOST')
+port = 3333  
 
-    def start_election(self):
-        self.leader = None
-        threads = []
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect((host, port))
 
-        for client in self.clients:
-            thread = threading.Thread(target=client.initiate_election)
-            threads.append(thread)
-            thread.start()
 
-        for thread in threads:
-            thread.join()
+def enviar_message(message):
+    if len(message) == 4 and not message[0] == '03.4':
+        message_str = message
+    elif message[0] == '03.4' :
+        print(message)
+        message_str = ','.join([str(item) for item in message])
+    else:
+        message_str = ','.join([str(item) for item in message])
+        
+    client_socket.send(message_str.encode())
+    print('mensagem enviada', message_str)
 
-        if self.leader is not None:
-            print("Eleição concluída. Novo líder: ", self.leader)
+
+
+def response_servidor():
+    response = client_socket.recv(1024)
+    response = response.decode()
+    response = response.split(",")
+    return response
+
+def atividade_inicial(response):
+    
+    if response[0] == 'True':
+        if response[3] ==  'VENDEDOR':
+            form = list(form_vendedor(response[2])) 
+            form.append(response[1])
+            return form
+        elif response[3] == 'GERENTE':
+            form = form_gerente(response[2])
+            return form
         else:
-            print("Eleição concluída. Nenhum líder eleito.")
+            print("ERROR: unknown response")
+            return ''
+    
+        
+    elif response[0] == 'False':
+        print("ERROR: Usuario inexistente")
+        return ''
+    else:
+        print(response)
+        return ''
 
-    def client_response(self, client):
-        self.leader = client
-        print("Novo líder temporário: ", self.leader)
+        
+def main():
+    message = realizar_login()
+    enviar_message(message)
+    resp = response_servidor()
+    
+    while True:
+        data = atividade_inicial(resp)
+        enviar_message(data)
+        resp2 = response_servidor()
+        print('\n\n', resp2)
+        confirmacao = input('\nSair? (s/n)')
+        if confirmacao.lower() == "s":
+            break
+        
 
-    def stop_server(self):
-        self.is_running = False
 
-class Client:
-    def __init__(self, server):
-        self.server = server
 
-    def run(self):
-        while self.server.is_running:
-            # Realizar as operações do cliente
+main()
 
-            time.sleep(1)  # Aguardar um intervalo antes de verificar novamente
-
-    def initiate_election(self):
-        self.server.client_response(self)
-
-# Criação do servidor e clientes
-server = Server()
-client1 = Client(server)
-client2 = Client(server)
-
-# Adicionar os clientes ao servidor
-server.clients.append(client1)
-server.clients.append(client2)
-
-# Iniciar as threads do servidor e clientes
-server_thread = threading.Thread(target=server.run)
-client1_thread = threading.Thread(target=client1.run)
-client2_thread = threading.Thread(target=client2.run)
-
-server_thread.start()
-client1_thread.start()
-client2_thread.start()
-
-time.sleep(10)  # Tempo de execução
-
-# Encerrar o servidor e clientes
-server.stop_server()
-client1_thread.join()
-client2_thread.join()
-server_thread.join()
+client_socket.close()

@@ -4,7 +4,7 @@ import sqlite3
 conn = sqlite3.connect('Model/onsell.db')
 cursor = conn.cursor()
 
-def consultar_melhor_loja():
+def consultar_melhor_loja(cursor):
     vendas = []
 
     cursor.execute("""
@@ -16,7 +16,6 @@ def consultar_melhor_loja():
 
     vendas = cursor.fetchall()
     return vendas[0]
-
 
 
 

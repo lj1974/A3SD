@@ -3,6 +3,7 @@ import re
 from View.nome import nome_usuarios
 from View.users import escolher_vendedor
 from View.redes import escolher_data_para_rede, escolher_rede
+from View.lojas import escolher_loja
 
 
 def form_gerente(user):
@@ -12,7 +13,8 @@ def form_gerente(user):
     print("1. Pesquisar total de vendas de um vendedor")
     print("2. Exibir melhor loja")
     print("3. Exibir melhor vendedor")
-    print("4. Filtrar total de vendas de uma rede\n")
+    print("4. Filtrar total de vendas de uma rede")
+    print("5. Pesquisar total de vendas de uma loja\n")
      
     while True:
         opcao = input("\nEscolha uma opção: ")
@@ -25,6 +27,9 @@ def form_gerente(user):
                 nome_rede = escolher_rede()
                 rede = escolher_data_para_rede()
                 return valor, nome_rede[1], rede[0], rede[1]
+            if opcao == '5':
+                loja = escolher_loja()
+                return valor, loja[0], loja[1]
             
             return valor
         else:
