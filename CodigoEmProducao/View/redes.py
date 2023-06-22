@@ -11,12 +11,15 @@ def escolher_rede():
         for i, rede in enumerate(redes, start=1):
             print(f"{i}. {rede[1]}")
 
-        num_rede = int(input('\nDigite o número da Rede:'))
-        if num_rede < 1 or num_rede > len(redes):
-            print("Número da rede inválido. Tente novamente.")
+        num_rede = input('\nDigite o número da Rede:')
+        if num_rede.isdigit():
+            num_rede = int(num_rede)
+            if num_rede < 1 or num_rede > len(redes):
+                print("Número da rede inválido. Tente novamente.")
+            else:
+                return redes[num_rede - 1]
         else:
-            return redes[num_rede - 1]
-
+            print("digite um numero.")
         
 def escolher_data_para_rede():
     
