@@ -1,0 +1,17 @@
+{
+  "python.analysis.extraPaths": [
+    "./View",
+    "./Controller",
+    "./Model",
+    "./Initial"
+  ],
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "a3sd",
+      "database": "${workspaceFolder:A3SD}/Model/onsell.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
