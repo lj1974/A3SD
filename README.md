@@ -14,7 +14,7 @@ O tutorial descrito abaixo irá te direcionar na instalação de todas as tecnol
 Clonar Repositório:
 
 ```
-	   git clone https://github.com/lj1974/A3SD
+	   git clone https://github.com/lj1974/EntregaA3_SD
 ```
 
 Após copiar, executar os comandos abaixo no terminal, na pasta raiz:
