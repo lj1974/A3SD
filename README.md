@@ -17,7 +17,7 @@ Clonar Repositório:
 	   git clone https://github.com/lj1974/EntregaA3_SD
 ```
 
-Após copiar, executar os comandos abaixo no terminal, na pasta raiz:
+Após copiar, executar os comandos abaixo no terminal, na pasta raiz do diretorio "Codigo Fonte":
 ```
     	Python socket_servidor_thread.py
 ```
