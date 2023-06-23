@@ -17,7 +17,6 @@ Clonar Repositório:
 	   git clone https://github.com/lj1974/A3SD
 ```
 
-```
 Após copiar, executar os comandos abaixo no terminal, na pasta raiz:
 ```
     	Python socket_servidor_thread.py
@@ -85,7 +84,7 @@ Em sequência iremos citar as bibliotecas utilizadas na aplicação, e seus coma
 
 ## Conclusão
 
-Nossa equipe tentou nesse projeto, e em partes conseguimos, desenvolver uma aplicação utilizando os sockets, com a finalidade de gerenciar a captura dos dados referente às vendas de uma loja. Nossa intenção aqui foi projetar uma aplicação que atenda tanto a necessidades do gerente, na consulta das informações registradas, mas também que atenda aos vendedores, no registro dessas informações
+Nossa equipe tentou nesse projeto, e em partes conseguimos, desenvolver uma aplicação utilizando os sockets, com a finalidade de gerenciar a captura dos dados referente às vendas de uma loja. Nossa intenção aqui foi projetar uma aplicação que atenda tanto a necessidades do gerente, na consulta das informações registradas, mas também que atenda aos vendedores, no registro dessas informações. Infelizmente, não conseguimos finalizar a parte do algoritmo de eleição, e pedimos desculpas.
 
 
 
