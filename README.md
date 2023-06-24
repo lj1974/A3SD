@@ -19,11 +19,11 @@ Clonar Repositório:
 
 Após copiar, executar os comandos abaixo no terminal, na pasta raiz do diretorio "Codigo Fonte":
 ```
-    	Python socket_servidor_thread.py
+    	python socket_servidor_thread.py
 ```
 E depois:
 ```
-    	Python socket_cliente.py
+    	python socket_cliente.py
 ```
 
 ### 🔧 Utilização
