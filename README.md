@@ -31,17 +31,18 @@ E depois:
 Para fazer login, basta apenas digitar um CPF. Se gostaria de criar uma conta propria, digite o seu CPF e logo após entrará na tela de cadastro caso não possua um cadastro já feito para o seu CPF.
 
 O banco de dados possue dados que podem ser visualizados assim que rodar o codigo pela primeira vez, para testar, tente entrar com um dos usuarios previamente cadastrados:
+
 LOGIN DE VENDEDOR: 12345678901
 LOGIN DE GERENTE: 56789012345
 
-Caso não funcione significa que os dados iniciais do banco de dados não foram cadastrados imediatamente! Nesse caso, siga as instruções a seguir:
+Caso não funcione significa que os dados iniciais do banco de dados não foram cadastrados automaticamente! Nesse caso, siga as instruções a seguir:
 
 Navegue até a pasta "Initial" e execute o comando abaixo:
 ```
    python config.py
 ```
 
-Pronto! 
+Pronto! Pode tentar novamente.
 
 
 ## 🛠️  Bibliotecas utilizadas 🚀🚀
